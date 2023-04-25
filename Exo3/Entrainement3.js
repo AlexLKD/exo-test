@@ -63,8 +63,8 @@ console.log(
 // }
 
 function findLongestWord(text) {
-    let longestWord = text.split(" ").reduce(function (longest, word) {
-        return word.length > longest.length ? word : longest;
+    let longestWord = text.split(" ").reduce(function (a, b) {
+        return b.length > a.length ? b : a;
     }, "");
     return longestWord;
 }
@@ -118,7 +118,23 @@ const players = {
     Jenny: 125,
 };
 
-console.log();
+function getPlayers(players) {
+    const playersArray = Object.entries(players);
+    playersArray.sort(function (a, b) {
+        if (a[1] > b[1]) {
+            return -1;
+        } else if (a[1] < b[1]) {
+            return 1;
+        }
+        // return b[1] - a[1];
+    });
+    const playerNames = playersArray.map(function (player) {
+        return player[0];
+    });
+    return playerNames;
+}
+const sortedPlayers = getPlayers(players);
+console.log(sortedPlayers);
 
 // -----------------------------------
 console.log(
