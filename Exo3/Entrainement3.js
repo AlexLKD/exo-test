@@ -2,6 +2,7 @@
 console.log(
     "1/ Implémentez une fonction qui transforme un texte en camelCase."
 );
+
 // function toCamelCase(text) {
 //     return text
 //         .replace(/[-_\s]+(.)?/g, (a, b) => (b ? b.toUpperCase() : ""))
@@ -21,17 +22,20 @@ console.log(
 //         });
 // }
 function toCamelCase(text) {
-    let words = text.split(/[-_\s]+/); // transform text into words + regex
-    let camelCase = words[0].toLowerCase(); // first word in lowercase
-
+    let words = text.split(/[-_\s]+/g); // transform text into words + regex
+    let camelCaseText = words[0].toLowerCase(); // first word in lowercase
     for (let i = 1; i < words.length; i++) {
-        camelCase +=
+        camelCaseText +=
             words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
         // transform every word except the first one in camelCase
     }
-
-    return camelCase;
+    return camelCaseText;
 }
+
+// let words = text.split(/[-_\s]+/g); // transform text into words + regex
+// words = words.map(function (word) {
+//     return word.toLowerCase;
+// });
 // function toCamelCase(text) {
 //     let words = text.split(' ')
 //     words = words.map(function (word, index) {
@@ -63,10 +67,9 @@ console.log(
 // }
 
 function findLongestWord(text) {
-    let longestWord = text.split(" ").reduce(function (a, b) {
+    return (text = text.split(" ").reduce(function (a, b) {
         return b.length > a.length ? b : a;
-    }, "");
-    return longestWord;
+    }, ""));
 }
 
 console.log(findLongestWord("bien le bonjour Guillaume"));
@@ -76,8 +79,26 @@ console.log(
     "3/ Implémentez une fonction qui converti un nombre de seconde en un tableau exprimant cette durée en secondes, minutes, heures, jours, semaines et années."
 );
 
-console.log();
+function getTime(seconds) {
+    const dividers = [60, 60, 24, 7, 52];
+    const time = [seconds];
 
+    dividers.forEach(function (divider, i) {
+        time[i + 1] = Math.floor(time[i] / divider);
+        time[i] %= divider;
+    });
+    return time;
+}
+//     let secondsLeft = seconds % 60;
+//     let minutes = Math.floor(seconds / 60);
+//     let hours = Math.floor(minutes / 60);
+//     let days = Math.floor(hours / 24);
+//     let weeks = Math.floor(days / 7);
+//     let years = Math.floor(weeks / 52);
+//     const array = [secondsLeft, minutes, hours, days, weeks, years];
+//     return array;
+// }
+console.log(getTime(3600 * 24 + 32 + 180));
 // -----------------------------------
 console.log(
     "4/ Implémentez une fonction qui prend en paramètre un tableau retourné par la fonction précédente et retourne la chaîne de caractère correspondante."
@@ -118,22 +139,23 @@ const players = {
     Jenny: 125,
 };
 
-function getPlayers(players) {
+function sortPlayersByScore(players) {
     const playersArray = Object.entries(players);
+    // console.log(playersArray);
     playersArray.sort(function (a, b) {
-        if (a[1] > b[1]) {
-            return -1;
-        } else if (a[1] < b[1]) {
-            return 1;
-        }
-        // return b[1] - a[1];
+        // if (a[1] > b[1]) {
+        //     return -1;
+        // } else if (a[1] < b[1]) {
+        //     return 1;
+        // }
+        return b[1] - a[1]; // quicker than if else
     });
     const playerNames = playersArray.map(function (player) {
         return player[0];
     });
     return playerNames;
 }
-const sortedPlayers = getPlayers(players);
+const sortedPlayers = sortPlayersByScore(players);
 console.log(sortedPlayers);
 
 // -----------------------------------
