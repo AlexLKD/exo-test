@@ -14,17 +14,24 @@ console.log(
     "2/ Implémentez une fonction qui retourne le plus grand mot d'un texte."
 );
 
+// function findLongestWord(text) {
+//     let textSplit = text.split(" "),
+//         longestWord = 0,
+//         word;
+//     for (let i = 0; i < textSplit.length; i++) {
+//         if (textSplit[i].length > longestWord) {
+//             longestWord = textSplit[i].length;
+//             word = textSplit[i];
+//         }
+//     }
+//     return word;
+// }
+
 function findLongestWord(text) {
-    let textSplit = text.split(" "),
-        longestWord = 0,
-        word;
-    for (let i = 0; i < textSplit.length; i++) {
-        if (textSplit[i].length > longestWord) {
-            longestWord = textSplit[i].length;
-            word = textSplit[i];
-        }
-    }
-    return word;
+    let longestWord = text.split(" ").reduce(function (longest, word) {
+        return word.length > longest.length ? word : longest;
+    }, "");
+    return longestWord;
 }
 
 console.log(findLongestWord("bien le bonjour"));
