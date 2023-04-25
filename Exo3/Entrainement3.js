@@ -2,12 +2,36 @@
 console.log(
     "1/ Implémentez une fonction qui transforme un texte en camelCase."
 );
+// function toCamelCase(text) {
+//     return text
+//         .replace(/[-_\s]+(.)?/g, (a, b) => (b ? b.toUpperCase() : ""))
+//         .replace(/^([A-Z])/, (a, b) => b.toLowerCase());
+// }
+// function toCamelCase(text) {
+//     return text
+//         .replace(/[-_\s]+(.)?/g, function (match, group) {
+//             if (group) {
+//                 return group.toUpperCase();
+//             } else {
+//                 return "";
+//             }
+//         })
+//         .replace(/^([A-Z])/, function (match, group) {
+//             return group.toLowerCase();
+//         });
+// }
 function toCamelCase(text) {
-    return text
-        .replace(/[-_\s]+(.)?/g, (a, b) => (b ? b.toUpperCase() : ""))
-        .replace(/^([A-Z])/, (a, b) => b.toLowerCase());
-}
+    let words = text.split(/[-_\s]+/); // transform text into words + regex
+    let camelCase = words[0].toLowerCase(); // first word in lowercase
 
+    for (let i = 1; i < words.length; i++) {
+        camelCase +=
+            words[i].charAt(0).toUpperCase() + words[i].slice(1).toLowerCase();
+        // transform every word except the first one in camelCase
+    }
+
+    return camelCase;
+}
 // function toCamelCase(text) {
 //     let words = text.split(' ')
 //     words = words.map(function (word, index) {
