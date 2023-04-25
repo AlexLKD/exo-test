@@ -7,6 +7,17 @@ function toCamelCase(text) {
         .replace(/[-_\s]+(.)?/g, (a, b) => (b ? b.toUpperCase() : ""))
         .replace(/^([A-Z])/, (a, b) => b.toLowerCase());
 }
+
+// function toCamelCase(text) {
+//     let words = text.split(' ')
+//     words = words.map(function (word, index) {
+//         if (index === 0) {
+//            return word.toLowerCase();
+//         }
+//         return word.charAt(0).toUpperCase() + word.slice(1);
+//     })
+//     return words.join('');
+// }
 console.log(toCamelCase("Bien-le bonjour_guillaume"));
 
 // -----------------------------------
@@ -34,7 +45,7 @@ function findLongestWord(text) {
     return longestWord;
 }
 
-console.log(findLongestWord("bien le bonjour"));
+console.log(findLongestWord("bien le bonjour Guillaume"));
 
 // -----------------------------------
 console.log(
