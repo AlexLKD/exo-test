@@ -104,7 +104,17 @@ console.log(
     "4/ Implémentez une fonction qui prend en paramètre un tableau retourné par la fonction précédente et retourne la chaîne de caractère correspondante."
 );
 
-console.log();
+function getArrayTimeToText(array) {
+    const text = "rien";
+    const words = ["seconde", "minute", "heure", "jour", "semaine", "année"];
+    return array
+        .map(function (time, i) {
+            return `${time} ${words[i]}${time > 1 ? "s" : ""}`;
+        })
+        .join(" ");
+}
+const time = getTime(3600 * 24 + 32 + 180);
+console.log(getArrayTimeToText(time));
 
 // -----------------------------------
 console.log(
