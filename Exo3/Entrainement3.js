@@ -2,8 +2,12 @@
 console.log(
     "1/ Implémentez une fonction qui transforme un texte en camelCase."
 );
-
-console.log();
+function toCamelCase(text) {
+    return text
+        .replace(/[-_\s]+(.)?/g, (a, b) => (b ? b.toUpperCase() : ""))
+        .replace(/^([A-Z])/, (a, b) => b.toLowerCase());
+}
+console.log(toCamelCase("Bien-le bonjour"));
 
 // -----------------------------------
 console.log(
